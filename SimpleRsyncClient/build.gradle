@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 15
-    buildToolsVersion "19.1.0"
     defaultConfig {
         applicationId "org.sb.simplersyncclient"
         minSdkVersion 15

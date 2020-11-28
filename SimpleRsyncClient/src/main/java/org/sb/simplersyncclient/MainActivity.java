@@ -151,9 +151,17 @@ public class MainActivity extends Activity {
     private void copyExecutables(boolean overwrite) throws IOException {
         AssetManager am = this.getAssets();
         final File binDir = new File(getFilesDir(), "bin");
+        String EXE_TYPE = "x86";
         if (!binDir.exists()) binDir.mkdir();
 
-        final String EXE_TYPE = (Build.VERSION.SDK_INT >= 21 ? "pie" : "fixed");
+        if(Build.CPU_ABI.contains("x86")) {
+            EXE_TYPE = "x86";
+        }
+        else if(Build.CPU_ABI.contains("arm")) {
+            EXE_TYPE = "arm";
+        }
+
+        // final String EXE_TYPE = (Build.VERSION.SDK_INT >= 21 ? "pie" : "fixed");
         final String assetDir = "bin" + File.separator + EXE_TYPE;
         for (String bin : am.list(assetDir)) {
             File toPath = new File(binDir, bin);
